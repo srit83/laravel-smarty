@@ -14,12 +14,15 @@ class SmartyEngine implements Engines\EngineInterface {
      */
     protected $_oSmarty = null;
 
+    protected $_sConfigKey = 'laravelSmarty::';
+
 	public function __construct($config)
 	{
 		$this->config = $config;
-		
-		require_once dirname(__FILE__) . '/Smarty/libs/Smarty.class.php';
-        $this->_oSmarty = new \Smarty();
+
+        $this->_initalizeSmarty();
+
+
 	}
 
 	/**
@@ -84,36 +87,7 @@ class SmartyEngine implements Engines\EngineInterface {
     	ob_start();
 
 		try {
-			$configKey = 'laravelSmarty::';
-
-			$caching = $this->config[$configKey . 'caching'];
-			$cache_lifetime = $this->config[$configKey . 'cache_lifetime'];
-			$debugging = $this->config[$configKey . 'debugging'];
-
-			$template_path = $this->config[$configKey . 'template_path'];
-			$compile_path  = $this->config[$configKey . 'compile_path'];
-			$cache_path    = $this->config[$configKey . 'cache_path'];
-
-			// Get the plugins path from the configuration
-			$plugins_paths = $this->config[$configKey . 'plugins_paths'];
-
-            //$this->_oSmarty = new \Smarty();
-
-            $this->_oSmarty->setTemplateDir($template_path);
-            $this->_oSmarty->setCompileDir($compile_path);
-            $this->_oSmarty->setCacheDir($cache_path);
-
-			// Add the plugin folder from the config to the Smarty object.
-			// Note that I am using addPluginsDir here rather than setPluginsDir
-			// because I want to add a secondary folder, not replace the
-			// existing folder.
-			foreach($plugins_paths as $path)
-                $this->_oSmarty->addPluginsDir($path);
-
-            $this->_oSmarty->debugging = $debugging;
-            $this->_oSmarty->caching = $caching;
-            $this->_oSmarty->cache_lifetime = $cache_lifetime;
-            $this->_oSmarty->compile_check = true;
+            $this->_initalizeSmarty();
 
 			//$Smarty->escape_html = true;
             $this->_oSmarty->error_reporting = E_ALL &~ E_NOTICE;
@@ -150,5 +124,43 @@ class SmartyEngine implements Engines\EngineInterface {
 	{
 		return $this->compiler;
 	}
+
+    protected function _initalizeSmarty()
+    {
+
+        $configKey = $this->_sConfigKey;
+
+        $caching = $this->config[$configKey . 'caching'];
+        $cache_lifetime = $this->config[$configKey . 'cache_lifetime'];
+        $debugging = $this->config[$configKey . 'debugging'];
+
+        $template_path = $this->config[$configKey . 'template_path'];
+        $compile_path = $this->config[$configKey . 'compile_path'];
+        $cache_path = $this->config[$configKey . 'cache_path'];
+
+        // Get the plugins path from the configuration
+        $plugins_paths = $this->config[$configKey . 'plugins_paths'];
+
+        //$this->_oSmarty = new \Smarty();
+
+        require_once dirname(__FILE__) . '/Smarty/libs/Smarty.class.php';
+        $this->_oSmarty = new \Smarty();
+
+        $this->_oSmarty->setTemplateDir($template_path);
+        $this->_oSmarty->setCompileDir($compile_path);
+        $this->_oSmarty->setCacheDir($cache_path);
+
+        // Add the plugin folder from the config to the Smarty object.
+        // Note that I am using addPluginsDir here rather than setPluginsDir
+        // because I want to add a secondary folder, not replace the
+        // existing folder.
+        foreach ($plugins_paths as $path)
+            $this->_oSmarty->addPluginsDir($path);
+
+        $this->_oSmarty->debugging = $debugging;
+        $this->_oSmarty->caching = $caching;
+        $this->_oSmarty->cache_lifetime = $cache_lifetime;
+        $this->_oSmarty->compile_check = true;
+    }
 
 }
