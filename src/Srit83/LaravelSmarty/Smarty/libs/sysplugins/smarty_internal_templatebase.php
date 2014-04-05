@@ -140,7 +140,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
                         ob_start();
 						
                         /// dark mad edit
-                        \Dark\SmartyView\SmartyEngine::integrateViewComposers($_template);               
+                        \Srit83\LaravelSmarty\SmartyEngine::integrateViewComposers($_template);
                         /// end mad edit           
 						 
                         eval("?>" . $code);
@@ -183,7 +183,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
                         array_unshift($_template->_capture_stack,array());
 						
                         /// dark mad edit
-                        \Dark\SmartyView\SmartyEngine::integrateViewComposers($_template);               
+                        \Srit83\LaravelSmarty\SmartyEngine::integrateViewComposers($_template);
                         /// end mad edit           
 						 
                         //
@@ -209,7 +209,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
                         ob_start();
 						
                         /// dark mad edit
-                        \Dark\SmartyView\SmartyEngine::integrateViewComposers($_template);               
+                        \Srit83\LaravelSmarty\SmartyEngine::integrateViewComposers($_template);
                         /// end mad edit           
 						 
                         $_template->source->renderUncompiled($_template);
@@ -268,7 +268,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
                     ob_start();
 					
 					/// dark mad edit
-					\Dark\SmartyView\SmartyEngine::integrateViewComposers($_template);               
+					\Srit83\LaravelSmarty\SmartyEngine::integrateViewComposers($_template);
 					/// end mad edit           
 						 
                     eval("?>" . $output);
@@ -298,7 +298,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
                 ob_start();
 				
 				/// dark mad edit
-				\Dark\SmartyView\SmartyEngine::integrateViewComposers($_template);               
+				\Srit83\LaravelSmarty\SmartyEngine::integrateViewComposers($_template);
 				/// end mad edit           
 						 
                 array_unshift($_template->_capture_stack,array());
