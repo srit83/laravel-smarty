@@ -1,11 +1,11 @@
 {
-    "name": "srit83/extsentry",
+    "name": "srit83/laravel-smarty",
     "description": "Smarty for laravel",
     "license" : "MIT",
     "authors": [
         {
             "name": "Stefan Riedel",
-            "email": "sr@fellnose.de"
+            "email": "sr@phpate.de"
         }
     ],
     "require": {
