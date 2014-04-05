@@ -18,7 +18,7 @@ class LaravelSmartyServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('srit/laravelSmarty');
+        $this->package('srit83/laravel-smarty');
     }
 
     /**
