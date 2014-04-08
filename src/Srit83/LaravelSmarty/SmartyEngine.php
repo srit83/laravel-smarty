@@ -14,7 +14,7 @@ class SmartyEngine implements Engines\EngineInterface {
      */
     protected $_oSmarty = null;
 
-    protected $_sConfigKey = 'laravelSmarty::';
+    protected $_sConfigKey = 'srit83/laravel-smarty::';
 
 	public function __construct($config)
 	{
