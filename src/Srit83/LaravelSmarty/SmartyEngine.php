@@ -137,6 +137,8 @@ class SmartyEngine implements Engines\EngineInterface {
         $compile_path = $this->config[$configKey . 'compile_path'];
         $cache_path = $this->config[$configKey . 'cache_path'];
 
+        $sLeftDelimiter = $this->config[$configKey . 'left_delimiter'];
+		$sRightDelimiter = $this->config[$configKey . 'right_delimiter'];	
         // Get the plugins path from the configuration
         $plugins_paths = $this->config[$configKey . 'plugins_paths'];
 
@@ -148,6 +150,8 @@ class SmartyEngine implements Engines\EngineInterface {
         $this->_oSmarty->setTemplateDir($template_path);
         $this->_oSmarty->setCompileDir($compile_path);
         $this->_oSmarty->setCacheDir($cache_path);
+        $this->_oSmarty->left_delimiter = $sLeftDelimiter;
+        $this->_oSmarty->right_delimiter = $sRightDelimiter;
 
         // Add the plugin folder from the config to the Smarty object.
         // Note that I am using addPluginsDir here rather than setPluginsDir

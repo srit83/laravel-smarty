@@ -22,4 +22,7 @@ return array(
 	'plugins_paths'  => array(
 			\App::make('path').'/libraries/smarty/plugins',
 		),
+
+	'left_delimiter' => '{',
+	'right_delimiter' => '}'
 );
